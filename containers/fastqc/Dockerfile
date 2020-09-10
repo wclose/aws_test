@@ -10,7 +10,7 @@ RUN apt-get update && \
 	apt-get clean -y
 
 # Building the conda environment
-COPY env/fastqc.yaml /opt/biorad/env/
+COPY fastqc.yaml /opt/biorad/env/
 RUN conda env create -f /opt/biorad/env/fastqc.yaml && \
 	conda clean -afy
 

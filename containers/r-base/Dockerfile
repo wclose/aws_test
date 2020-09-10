@@ -10,7 +10,7 @@ RUN apt-get update && \
 	apt-get clean -y
 
 # Building the conda environment
-COPY env/r.yaml /opt/biorad/env/
+COPY r.yaml /opt/biorad/env/
 RUN conda env create -f /opt/biorad/env/r.yaml && \
 	conda clean -afy
 
