@@ -6,16 +6,21 @@ process exampleRScript {
   
   script:
   """
+  echo \$PATH
+  which Rscript
   example.R
   """
   
 }
 
 process exampleBashScript {
+  container 'wclose/fastqc:latest'
   echo true
   
   script:
   """
+  echo \$PATH
+  which fastqc
   example.sh
   """
   
