@@ -6,11 +6,10 @@ RUN apt-get update && \
 	apt-get install -y procps=2:3.3.15-2 && \
 	apt-get clean -y
 
-RUN rm root/.bashrc
-
 COPY env/r.yaml /opt/biorad/env/
 RUN conda env create -f /opt/biorad/env/r.yaml && \
-	conda clean -afy 
+	conda clean -afy
 
-COPY entrypoint.sh /opt/biorad/
-ENTRYPOINT ["/opt/biorad/entrypoint.sh"]
+RUN rm root/.bashrc
+RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/bash.bashrc && \
+	echo "conda activate r" >> /etc/bash.bashrc
