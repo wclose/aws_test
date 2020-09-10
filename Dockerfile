@@ -11,5 +11,9 @@ RUN conda env create -f /opt/biorad/env/r.yaml && \
 	conda clean -afy
 
 RUN rm root/.bashrc
-RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/bash.bashrc && \
-	echo "conda activate r" >> /etc/bash.bashrc
+RUN echo "source /etc/container.bashrc" >> /etc/bash.bashrc && \
+	echo ". /opt/conda/etc/profile.d/conda.sh" > /etc/container.bashrc && \
+	echo "conda activate r" >> /etc/container.bashrc
+
+ENV BASH_ENV /etc/container.bashrc
+ENV ENV /etc/container.bashrc
